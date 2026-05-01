@@ -1,0 +1,28 @@
+# Environment files - NEVER commit these
+.env
+.env.local
+.env.*.local
+
+# Dependencies
+node_modules/
+
+# Build output
+/dist/
+/build/
+
+# Logs
+*.log
+npm-debug.log*
+/srv/logs/
+
+# Generated files
+/srv/proofs/
+*.pdf
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test coverage
+.nyc_output
+coverage/

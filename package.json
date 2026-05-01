@@ -1,0 +1,28 @@
+{
+  "name": "dealer-email-platform",
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "start":   "node src/server.js",
+    "dev":     "node --watch src/server.js",
+    "migrate": "node src/db/migrate.js"
+  },
+  "dependencies": {
+    "basic-ftp":    "^5.0.5",
+    "bullmq":       "^5.0.0",
+    "csv-parse":    "^5.5.3",
+    "express":      "^5.0.0",
+    "googleapis":   "^140.0.0",
+    "ioredis":      "^5.3.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer":       "^1.4.5-lts.1",
+    "node-fetch":   "^3.3.2",
+    "nodemailer":   "^6.9.0",
+    "papaparse":    "^5.4.1",
+    "pg":           "^8.11.3",
+    "puppeteer":    "^22.0.0"
+  }
+}
