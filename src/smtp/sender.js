@@ -25,24 +25,23 @@ export async function sendEmail(opts) {
   const pixelUrl = `https://${TRACKING_DOMAIN}/t/open/${sendId}.png`;
   const trackedHtml = html + `<img src="${pixelUrl}" width="1" height="1" style="display:none" alt="">`;
 
-  const payload = {
-    to:        [{ address: to, name: toName || '' }],
-    from:      domain ? `${opts.fromName || 'Sales'} <${domain.from_email}>` : from,
-    reply_to:  replyTo || undefined,
-    subject,
-    html_body: trackedHtml,
-    tag:       campaignSlug || 'campaign',
-    headers: {
-      'List-Unsubscribe':      `<https://${TRACKING_DOMAIN}/unsubscribe?cid=${sendId}>`,
-      'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
-    },
-  };
+ const payload = {
+  to:         [{ address: to, name: toName || '' }],
+  from:       domain ? `${opts.fromName || 'Sales'} <${domain.from_email}>` : from,
+  reply_to:   replyTo || undefined,
+  subject,
+  html_body:  trackedHtml,
+  tag:        campaignSlug || 'campaign',
+};
 
-  const response = await fetch(`${POSTAL_BASE}/api/v1/send/message`, {
-    method:  'POST',
-    headers: { 'X-Server-API-Key': apiKey, 'Content-Type': 'application/json' },
-    body:    JSON.stringify(payload),
-  });
+const response = await fetch(`${POSTAL_BASE}/api/v1/send/message`, {
+  method:  'POST',
+  headers: {
+    'X-Server-API-Key': apiKey,
+    'Content-Type':     'application/json'
+  },
+  body: JSON.stringify(payload),
+});
 
   const result = await response.json();
   if (result.status !== 'success') throw new Error(`Postal error: ${JSON.stringify(result)}`);
