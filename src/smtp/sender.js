@@ -26,7 +26,7 @@ export async function sendEmail(opts) {
   const trackedHtml = html + `<img src="${pixelUrl}" width="1" height="1" style="display:none" alt="">`;
 
  const payload = {
-  to:         [{ address: to, name: toName || '' }],
+  to: [to],
   from:       domain ? `${opts.fromName || 'Sales'} <${domain.from_email}>` : from,
   reply_to:   replyTo || undefined,
   subject,
