@@ -5,7 +5,7 @@ import { campaignQueue, registerFtpCrons } from './campaigns/scheduler.js';
 import domainsRouter from './domains/router.js';
 import adsRouter from './ads/router.js';
 import contactsUpload from './routes/contacts-upload.js';
-
+import webhooksRouter from './routes/webhooks.js';
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
