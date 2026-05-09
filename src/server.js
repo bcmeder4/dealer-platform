@@ -140,6 +140,7 @@ app.get('/api/campaigns/:id/stats', async (req, res) => {
 app.use('/api/domains',  domainsRouter);
 app.use('/api/ads',      adsRouter);
 app.use('/api/contacts', contactsUpload);
+app.use('/webhooks', webhooksRouter);
 
 // ── Start ────────────────────────────────────────────────
 const PORT = process.env.PORT || 3000;
