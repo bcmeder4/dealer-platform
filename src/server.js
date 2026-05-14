@@ -81,7 +81,18 @@ app.post('/webhooks/postal', async (req, res) => {
   }
   res.sendStatus(200);
 });
-
+app.post('/webhooks/sms', express.urlencoded({ extended: false }), async (req, res) => {
+  const { From, To, Body, SmsSid } = req.body;
+  const result = await handleInboundSms({
+    from: From, to: To, body: Body, twilioSid: SmsSid,
+  });
+  res.type('text/xml');
+  if (result.response) {
+    res.send(`<?xml version="1.0" encoding="UTF-8"?><Response><Message>${result.response}</Message></Response>`);
+  } else {
+    res.send('<?xml version="1.0" encoding="UTF-8"?><Response/>');
+  }
+});
 // ── Suppression webhook ──────────────────────────────────
 app.post('/webhooks/unsubscribed', async (req, res) => {
   if (req.headers['x-webhook-secret'] !== process.env.PLATFORM_WEBHOOK_SECRET)
