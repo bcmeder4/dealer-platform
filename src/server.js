@@ -153,6 +153,22 @@ app.use('/api/domains',  domainsRouter);
 app.use('/api/ads',      adsRouter);
 app.use('/api/contacts', contactsUpload);
 app.use('/webhooks', webhooksRouter);
+app.use('/webhooks', webhooksRouter);
+
+app.post('/webhooks/sms', express.urlencoded({ extended: false }), async (req, res) => {
+  const { From, To, Body, SmsSid } = req.body;
+  const result = await handleInboundSms({
+    from: From, to: To, body: Body, twilioSid: SmsSid,
+  });
+  res.type('text/xml');
+  if (result.response) {
+    res.send(`<?xml version="1.0" encoding="UTF-8"?><Response><Message>${result.response}</Message></Response>`);
+  } else {
+    res.send('<?xml version="1.0" encoding="UTF-8"?><Response/>');
+  }
+});
+
+// ── Start ────────────────────────────────────────────────
 
 // ── Start ────────────────────────────────────────────────
 const PORT = process.env.PORT || 3000;
