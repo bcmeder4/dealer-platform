@@ -9,9 +9,8 @@ import webhooksRouter from './routes/webhooks.js';
 import { handleInboundSms } from './messaging/index.js';
 import creditRouter from './routes/credit.js';
 import analyticsRouter from './routes/analytics.js';
-import ecommerceRouter   from './routes/ecommerce.js';
-import onboardingRouter  from './routes/onboarding.js';
-app.use('/api/analytics', analyticsRouter);
+import ecommerceRouter from './routes/ecommerce.js';
+import onboardingRouter from './routes/onboarding.js';
 
 const app = express();
 app.use(express.json());
@@ -158,11 +157,11 @@ app.get('/api/campaigns/:id/stats', async (req, res) => {
 app.use('/api/domains',  domainsRouter);
 app.use('/api/ads',      adsRouter);
 app.use('/api/contacts', contactsUpload);
-app.use('/webhooks', webhooksRouter);
 app.use('/api/credit', creditRouter);
 app.use('/api/analytics',  analyticsRouter);
 app.use('/api/ecommerce',  ecommerceRouter);
-app.use('/api/onboarding', onboardingRouter);
+app.use('/api/onboarding',onboardingRouter);
+app.use('/webhooks',      webhooksRouter);
 
 app.post('/webhooks/sms', express.urlencoded({ extended: false }), async (req, res) => {
   const { From, To, Body, SmsSid } = req.body;
