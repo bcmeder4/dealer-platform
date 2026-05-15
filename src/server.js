@@ -7,6 +7,8 @@ import adsRouter from './ads/router.js';
 import contactsUpload from './routes/contacts-upload.js';
 import webhooksRouter from './routes/webhooks.js';
 import { handleInboundSms } from './messaging/index.js';
+import creditRouter from './routes/credit.js';
+app.use('/api/credit', creditRouter);
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
