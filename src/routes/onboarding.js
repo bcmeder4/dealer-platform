@@ -122,14 +122,14 @@ router.get('/clients', async (req, res) => {
   if (vertical) { conditions.push(`vertical=$${p++}`); params.push(vertical); }
   if (status)   { conditions.push(`status=$${p++}`);   params.push(status); }
   if (search)   {
-    conditions.push(`(name ILIKE $${p} OR contact_email ILIKE $${p} OR slug ILIKE $${p})`);
+    conditions.push(`(name ILIKE $${p} OR from_email ILIKE $${p} OR slug ILIKE $${p})`);
     params.push(`%${search}%`); p++;
   }
 
   const { rows } = await pool.query(`
     SELECT
       d.id, d.name, d.slug, d.vertical, d.status,
-      d.contact_email, d.from_email, d.city, d.state,
+      d.from_email, d.from_email, d.city, d.state,
       d.onboarding_mode, d.features, d.created_at,
       COUNT(DISTINCT sd.id) AS domain_count,
       COUNT(DISTINCT s.id)  AS total_sends
@@ -166,7 +166,7 @@ router.get('/clients/:id', async (req, res) => {
 // ── Update client ─────────────────────────────────────────
 router.put('/clients/:id', async (req, res) => {
   const allowed = [
-    'name','brand','website','contact_name','contact_email',
+    'name','brand','website','contact_name','from_email',
     'contact_phone','address','city','state','zip',
     'from_name','from_email','reply_to','leads_email','features',
     'credit_provider','credit_dealer_id',
