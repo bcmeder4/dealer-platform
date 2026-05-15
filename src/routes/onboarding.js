@@ -58,7 +58,7 @@ router.post('/clients', async (req, res) => {
   const client = await pool.query(`
     INSERT INTO dealers (
       name, slug, brand, website,
-      contact_name, contact_email, contact_phone,
+      contact_name, from_email, contact_phone,
       address, city, state, zip,
       from_name, from_email, reply_to, leads_email,
       vertical, onboarding_mode, status,
