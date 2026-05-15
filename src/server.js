@@ -9,6 +9,9 @@ import webhooksRouter from './routes/webhooks.js';
 import { handleInboundSms } from './messaging/index.js';
 import creditRouter from './routes/credit.js';
 import analyticsRouter from './routes/analytics.js';
+import analyticsRouter   from './routes/analytics.js';
+import ecommerceRouter   from './routes/ecommerce.js';
+import onboardingRouter  from './routes/onboarding.js';
 app.use('/api/analytics', analyticsRouter);
 
 const app = express();
@@ -158,6 +161,9 @@ app.use('/api/ads',      adsRouter);
 app.use('/api/contacts', contactsUpload);
 app.use('/webhooks', webhooksRouter);
 app.use('/api/credit', creditRouter);
+app.use('/api/analytics',  analyticsRouter);
+app.use('/api/ecommerce',  ecommerceRouter);
+app.use('/api/onboarding', onboardingRouter);
 
 app.post('/webhooks/sms', express.urlencoded({ extended: false }), async (req, res) => {
   const { From, To, Body, SmsSid } = req.body;
