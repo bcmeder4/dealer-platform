@@ -8,7 +8,7 @@ import contactsUpload from './routes/contacts-upload.js';
 import webhooksRouter from './routes/webhooks.js';
 import { handleInboundSms } from './messaging/index.js';
 import creditRouter from './routes/credit.js';
-app.use('/api/credit', creditRouter);
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -155,7 +155,7 @@ app.use('/api/domains',  domainsRouter);
 app.use('/api/ads',      adsRouter);
 app.use('/api/contacts', contactsUpload);
 app.use('/webhooks', webhooksRouter);
-app.use('/webhooks', webhooksRouter);
+app.use('/api/credit', creditRouter);
 
 app.post('/webhooks/sms', express.urlencoded({ extended: false }), async (req, res) => {
   const { From, To, Body, SmsSid } = req.body;
