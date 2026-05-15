@@ -13,6 +13,7 @@
 // ============================================================
 
 // ── Template registry ─────────────────────────────────────
+import { resolveProductTokens } from './shopifyImporter.js';
 export const EMAIL_TEMPLATES = {
 
   product_spotlight: {
@@ -266,8 +267,7 @@ export function renderTemplate(templateKey, { product, client, contact, discount
   const template = EMAIL_TEMPLATES[templateKey];
   if (!template) throw new Error(`Template "${templateKey}" not found`);
 
-  const { resolveProductTokens } = require('./shopifyImporter.js');
-
+  
   let html = template.html;
   let subject = template.subject;
   let preview = template.preview;
