@@ -167,6 +167,18 @@ app.post('/webhooks/sms', express.urlencoded({ extended: false }), async (req, r
     res.send('<?xml version="1.0" encoding="UTF-8"?><Response/>');
   }
 });
+app.post('/webhooks/sms', express.urlencoded({ extended: false }), async (req, res) => {
+  // ... existing SMS webhook code
+});
+
+// TEMPORARY - remove after getting Twilio verified
+app.post('/webhooks/sms-debug', express.urlencoded({ extended: false }), (req, res) => {
+  console.log('SMS DEBUG:', JSON.stringify(req.body));
+  res.type('text/xml');
+  res.send('<?xml version="1.0" encoding="UTF-8"?><Response/>');
+});
+
+// ── Start ────────────────────────────────────────────────
 
 // ── Start ────────────────────────────────────────────────
 
