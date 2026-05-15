@@ -8,6 +8,8 @@ import contactsUpload from './routes/contacts-upload.js';
 import webhooksRouter from './routes/webhooks.js';
 import { handleInboundSms } from './messaging/index.js';
 import creditRouter from './routes/credit.js';
+import analyticsRouter from './routes/analytics.js';
+app.use('/api/analytics', analyticsRouter);
 
 const app = express();
 app.use(express.json());
