@@ -9,7 +9,6 @@ import webhooksRouter from './routes/webhooks.js';
 import { handleInboundSms } from './messaging/index.js';
 import creditRouter from './routes/credit.js';
 import analyticsRouter from './routes/analytics.js';
-import analyticsRouter   from './routes/analytics.js';
 import ecommerceRouter   from './routes/ecommerce.js';
 import onboardingRouter  from './routes/onboarding.js';
 app.use('/api/analytics', analyticsRouter);
